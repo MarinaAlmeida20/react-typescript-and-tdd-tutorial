@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App, { label } from './App';
+import App from './App';
 
 test('render hello world', () => {
   render(<App />);
@@ -8,7 +8,3 @@ test('render hello world', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('generates a label', () => {
-  const result = label('React');
-  expect(result).toEqual('Hello REACT');
-})
