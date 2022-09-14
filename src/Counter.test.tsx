@@ -48,7 +48,7 @@ test('should increment count by ten', () => {
     const counter = screen.getByRole(/counter/i);
 
     // click button
-    fireEvent.click(counter, { shiftKey: true })
-    expect(handler).toBeCalledTimes(1);
+    fireEvent.click(counter)
+    expect(handler).toBeCalledWith(false);
 
 });

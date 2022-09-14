@@ -5,7 +5,7 @@ export type CounterProps = {
     label?: string,
     count: number,
     onCounterIncrease:
-    (event: React.MouseEvent<HTMLElement>) => void;
+    (isShift: boolean) => void;
 }
 
 const initialState = { count: 0 }
@@ -13,13 +13,17 @@ const initialState = { count: 0 }
 export type CounterState = Readonly<typeof initialState>;
 
 const Counter = ({ label = "Count", count, onCounterIncrease }: CounterProps) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        onCounterIncrease(event.shiftKey)
+    }
+
     return (
         <div>
             <label htmlFor='counter'>{label}</label>
             <span
                 id="counter"
                 role="counter"
-                onClick={onCounterIncrease}
+                onClick={handleClick}
             >
                 {count}
             </span>
