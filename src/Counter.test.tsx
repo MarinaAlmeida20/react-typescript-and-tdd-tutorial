@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Counter from './Counter';
+import userEvent from '@testing-library/user-event';
 
 test('should render a label and counter', () => {
     render(<Counter />);
@@ -22,4 +23,26 @@ test('should start at zero', () => {
     render(<Counter />);
     const counter = screen.getByRole(/counter/i);
     expect(counter).toHaveTextContent("0");
+});
+
+test('should increment count by one', () => {
+    render(<Counter />);
+    const counter = screen.getByRole(/counter/i);
+    expect(counter).toHaveTextContent("0");
+
+    // click button
+    fireEvent.click(counter)
+    expect(counter).toHaveTextContent("1");
+
+});
+
+test('should increment count by ten', () => {
+    render(<Counter />);
+    const counter = screen.getByRole(/counter/i);
+    expect(counter).toHaveTextContent("0");
+
+    // click button
+    userEvent.click(counter, { shiftKey: true })
+    expect(counter).toHaveTextContent("10");
+
 });

@@ -8,13 +8,23 @@ export type CounterState = Readonly<typeof initialState>;
 class Counter extends Component<CounterProps, CounterState> {
     readonly state: CounterState = initialState;
 
+    incrementCounter = (event: React.MouseEvent<HTMLElement>) => {
+        const inc = event.shiftKey ? 10 : 1;
+        return this.setState({ count: this.state.count + inc })
+    };
+
     render() {
         // console.log(typeof this.state.count)
         const { label = "Count" } = this.props;
         return (
             <div>
                 <label htmlFor='counter'>{label}</label>
-                <span id="counter" role="counter">{this.state.count}</span>
+                <span
+                    id="counter"
+                    role="counter"
+                    onClick={this.incrementCounter}>
+                    {this.state.count}
+                </span>
             </div>
         )
     }
