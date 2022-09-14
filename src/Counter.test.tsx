@@ -17,3 +17,9 @@ test('should render a counter with a custom label', () => {
     const counter = screen.getByRole(/counter/i);
     expect(counter).toBeInTheDocument();
 });
+
+test('should start at zero', () => {
+    render(<Counter />);
+    const counter = screen.getByRole(/counter/i);
+    expect(counter).toHaveTextContent("0");
+});
